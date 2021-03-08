@@ -20,7 +20,10 @@ while sleep 60; do
     MYSQL_STATUS="$?"
 
     if [ $NGINX_STATUS -ne 0 -o $PHPFPM_STATUS -ne 0 -o $MYSQL_STATUS -ne 0 ]; then
-        echo "One of the processes has exited"
+        echo "One of the processes has exited. Stopping all processes."
+        service nginx stop
+        service php7.3-fpm stop
+        service mysql stop
         exit 1
     fi
 done

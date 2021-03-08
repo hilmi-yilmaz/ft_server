@@ -5,14 +5,12 @@ FROM debian:buster
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get -y update && \
     apt-get -y install  nginx \
-                        php7.3 \
                         php-fpm \
                         php-mysql \
                         mariadb-server \
-                        vim \
+                        php-mbstring \
                         wget \
                         curl \
-                        php-mbstring \
                         openssl
 
 # Create the root directory of the website and delete default configuration
@@ -54,7 +52,7 @@ RUN     openssl req -newkey rsa:2048 -nodes -keyout etc/ssl/private/nginx_ssl.ke
 COPY    srcs/nginx.conf /etc/nginx/conf.d
 COPY    srcs/config.inc.php /var/www/website/phpmyadmin/
 COPY    srcs/autoindex_switch.sh /bin/
-COPY    start_services.sh /bin/
+COPY    srcs/start_services.sh /bin/
 COPY    srcs/index.html /var/www/website
 
 # Change the ownership and permissions for the files to be served by the web server
