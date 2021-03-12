@@ -1,47 +1,42 @@
 # ft_server
-A LEMP stack inside of one Docker container.
 
-The LEMP stack is a group of software that can be used to serve dynamic webpages.
+This project is about setting up a LEMP stack inside one Docker container. LEMP stands for **L**inux **N**ginx **M**ySQL **P**HP. The LEMP stack is a group of software which can be used to serve dynamic webpages.
 
-Dynamic webpages display different content each time it is viewed. It can change
-while displaying the time, or it changes because of different users logging in.
+## Description
 
-LEMP stands for Linux Nginx Mysql PHP. Linux is the Operating System, Nginx is the webserver, Mysql is the database and the dynamic processing is handled by PHP.
+The LEMP stack is used to serve a Wordpress website. Nginx redirects all HTTP traffic to HTTPS. A self-signed SSL certificate is generated with OpenSSL. Also there is an autoindex switcher which can be used to turn on/off the autoindex directive of Nginx.
 
-apt update --> Update the local packege index. It downloads the packages list from the repositories and "updates" them to get information on the newest versions of packages and their dependencies.
+## Installation
 
-# Packages
+Clone this repository and go inside of it:
 
-php-mbstring:
-An extension of PHP used to manage non-ASCII strings. It provides multibyte specific string functions that help you deal with multiobyte encodings. 
+```sh
+git clone https://github.com/hilmi-yilmaz/ft_server.git lemp
+cd lemp
+```
 
-nginx:
-The webserver
+### Requirements
 
+- Docker Engine Software (to run Docker containers)
 
-mariadb-server:
-The database to store website information.
+## Usage
+To build and start the container run the following command:
 
-php-fpm:
-Nginx requires an external program to handle PHP processing: php-fpm. We tell Nginx to pass PHP requests to this software for processing.
+```sh
+./run.sh
+```
 
-php-mysql:
-A php module that allows PHP to communicate with MySQL-based databases.
+This runs the container and maps port 80 and 443 of the container to port 80 and 443 respectively on the Docker Host. The container runs in detached mode. The name of the container is _web_server_.
 
-wget:
-A utility for non-interactive downloads of files from the web.
+The website is setup and you can go to _http://localhost_. Your web browser will show you a warning about the security of this website because the SSL certificate is self-signed and not signed by a Certificate Autority (CA). You can ignore this and proceed to the website. You will see a simple HTML page to navigate to the Wordpress website or PhpMyAdmin to handle administration of MySQL over the web. 
 
-curl:
-Same as wget for our usage.
+### Switch autoindex
 
-# Downloads
+To switch the autoindex on/off you can run:
 
-phpmyadmin:
-A software tool written in PHP to handle the administration of MySQL over the Web.
+```sh
+./run_switch.sh [on|off]
+```
 
-# SSL
-SSL stands for Secure Sockets Layer and it is a technology for keeping an internet connection secure and safeguarding any sensitive data that is being sent between two systems, preventing criminals from reading and modifying any information transferred. 
-
-It does this by making sure that any data transfered between user and sites are impossible to read. It uses encrypting algorithms to scramble data in transit. 
-
-https://www.akadia.com/services/ssh_test_certificate.html
+## License
+[MIT](https://opensource.org/licenses/MIT)
