@@ -2,6 +2,8 @@
 
 This project is about setting up a LEMP stack inside one Docker container. LEMP stands for **L**inux **N**ginx **M**ySQL **P**HP. The LEMP stack is a group of software which can be used to serve dynamic webpages.
 
+:warning: **Running multiple services in one Docker container is not the usual way of working with containers. This project is an introduction to Network Administration and the goal is to learn how to write scripts to automate tasks and learn how to use Docker.**
+
 ## Description
 
 The LEMP stack is used to serve a Wordpress website. Nginx redirects all HTTP traffic to HTTPS. A self-signed SSL certificate is generated with OpenSSL. Also there is an autoindex switcher which can be used to turn on/off the autoindex directive of Nginx.
